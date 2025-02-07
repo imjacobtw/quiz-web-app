@@ -8,7 +8,7 @@ export default function Footer() {
           className="text-pastel-yellow hover:text-pastel-yellow/60 transition duration-300 ease-in-out"
           href="https://github.com/imjacobtw"
         >
-          Jacob Wilkerson
+          @imjacobtw
         </a>{" "}
         &copy; {currentYear}
       </p>
