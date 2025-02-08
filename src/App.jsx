@@ -1,16 +1,17 @@
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
-import Layout from "./components/Layout";
-import TriviaGenerationSection from "./components/TriviaGenerationSection";
-import QuestionSection from "./components/QuestionSection";
+import TriviaGenerationPage from "./components/TriviaGenerationPage";
+import QuestionPage from "./components/QuestionPage";
 
 export default function App() {
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />} >
-          <Route index element={<TriviaGenerationSection />} />
-          <Route path="/question/:id" element={<QuestionSection />} />
-        </Route>
+        <Route index element={<TriviaGenerationPage />} />
+        <Route path="/trivia" element={<QuestionPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,11 +1,45 @@
-import Section from "./Section";
+import { useState } from "react";
+import Page from "./Page";
+import { amountParameter } from "../util/TriviaApiUtil";
+import TriviaArgumentInputContainer from "./TriviaArgumentInputContainer";
 
-export default function TriviaGenerationSection() {
+export default function TriviaGenerationPage() {
+  const [isLoadingQuestions, setIsLoadingQuestions] = useState(false);
+  const [questionsError, setQuestionsError] = useState(null);
+
+  const [amount, setAmount] = useState(amountParameter.default);
+
   return (
-    <Section>
-      Trivia Generation Section
-    </Section>
-  )
+    <Page>
+      <h1 className="text-[5rem] font-black">
+        Welcome to My <span className="text-red-orange">Trivia</span> App!
+      </h1>
+      <p className="text-2xl font-medium mt-4 mb-8 text-gray-400/90">
+        Please select the parameters you want for your customized trivia below:
+      </p>
+      <div className="min-w-1/2 grid grid-rows-2 grid-cols-2 gap-4">
+        <TriviaArgumentInputContainer label="Select Amount">
+          <input 
+            type="number"
+            className="bg-white text-red-orange focus:outline-red-orange p-1 rounded-xl text-2xl text-center"
+            max={amountParameter.maximum}
+            min={amountParameter.minimum}
+            value={amount}
+            onChange={(e) => setAmount(Number(e.target.value))}
+          />
+        </TriviaArgumentInputContainer>
+        <TriviaArgumentInputContainer label="Select Category">
+          
+        </TriviaArgumentInputContainer>
+        <TriviaArgumentInputContainer label="Select Difficulty">
+          
+        </TriviaArgumentInputContainer>
+        <TriviaArgumentInputContainer label="Select Type">
+          
+        </TriviaArgumentInputContainer>
+      </div>
+    </Page>
+  );
 }
 
 // import { useState } from "react";

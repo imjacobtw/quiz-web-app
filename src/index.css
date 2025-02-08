@@ -6,3 +6,20 @@
   --color-red-orange: #ff6a3d;
   --color-pastel-yellow: #f4db7d;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+::selection {
+  background: var(--color-baby-blue);
+}
+::-moz-selection {
+  background: var(--color-baby-blue);
+}
