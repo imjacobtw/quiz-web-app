@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 
 export default function TriviaArgumentInputContainer({ label, children }) {
   return (
-    <div className="flex items-center justify-center">
-      <label className="mr-5 text-2xl font-medium">{label}:</label>
+    <div className="flex items-center justify-end my-5">
+      <label className="mr-5 font-medium">{label}:</label>
       {children}
     </div>
   );
