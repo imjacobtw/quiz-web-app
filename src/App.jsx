@@ -5,15 +5,12 @@ import QuestionPage from "./components/QuestionPage";
 
 export default function App() {
   const [questions, setQuestions] = useState([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  console.log(questions);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<TriviaGenerationPage setQuestions={setQuestions} />} />
-        <Route path="/trivia" element={<QuestionPage />} />
+        <Route index path="/" element={<TriviaGenerationPage setQuestions={setQuestions} />} />
+        <Route path="/trivia" element={<QuestionPage questions={questions} />} />
       </Routes>
     </BrowserRouter>
   );

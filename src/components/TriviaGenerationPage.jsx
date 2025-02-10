@@ -12,8 +12,10 @@ import {
 import TriviaQuestion from "../models/TriviaQuestion";
 import TriviaArgumentInputContainer from "./TriviaArgumentInputContainer";
 import TriviaArgumentDropdown from "./TriviaArgumentDropdown";
+import { useNavigate } from "react-router";
 
 export default function TriviaGenerationPage({ setQuestions }) {
+  const navigate = useNavigate();
   const [isLoadingQuestions, setIsLoadingQuestions] = useState(false);
   const [questionsError, setQuestionsError] = useState(null);
 
@@ -57,6 +59,8 @@ export default function TriviaGenerationPage({ setQuestions }) {
       }
 
       setQuestions(fetchedQuestions);
+      console.log(fetchedQuestions);
+      navigate("/trivia");
     } catch (err) {
       console.error(err.message);
       setQuestionsError(err);
@@ -66,11 +70,22 @@ export default function TriviaGenerationPage({ setQuestions }) {
   }
 
   if (isLoadingQuestions) {
-    return <Page><h1 className="text-4xl">Loading...</h1></Page>;
+    return (
+      <Page>
+        <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z" opacity=".25"/>
+          <path d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z" className="spinner_ajPY"/>
+        </svg>
+      </Page>
+    );
   }
 
   if (questionsError) {
-    return <Page><h1 className="text-4xl">{questionsError.message}</h1></Page>;
+    return (
+      <Page>
+        <h1 className="text-4xl">{questionsError.message}</h1>
+      </Page>
+    );
   }
 
   return (

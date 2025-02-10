@@ -19,3 +19,15 @@ select option:hover {
   background-color: var(--color-red-orange);
   color: white;
 }
+
+.spinner_ajPY {
+  filter: invert(100%);
+  transform-origin: center;
+  animation: spinner_AtaB .75s infinite linear
+}
+
+@keyframes spinner_AtaB {
+  100% {
+    transform:rotate(360deg)
+  }
+}
