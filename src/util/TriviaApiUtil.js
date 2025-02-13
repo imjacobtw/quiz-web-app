@@ -6,7 +6,7 @@ export const API_BASE_URL = "https://opentdb.com/api.php";
 export const RESPONSE_CODE_MESSAGES = {
   0: "Returned results successfully.",
   1: "Could not return results. The API doesn't have enough questions for your query.",
-  2: "Contains an invalid parameter. Arguements passed in aren't valid.",
+  2: "Contains an invalid parameter. Arguments passed in aren't valid.",
   3: "Session Token does not exist.",
   4: "Session Token has returned all possible questions for the specified query. Resetting the Token is necessary.",
   5: "Too many requests have occurred. Each IP can only access the API once every 5 seconds.",

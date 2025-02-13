@@ -1,43 +1,31 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import Page from "./Page";
 import AnswerButton from "./AnswerButton";
 import { Parser } from "html-to-react";
+import shuffle from "../util/shuffle";
 
-export default function QuestionPage({ questions }) {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
+export default function QuestionPage({ question, currentQuestionIndex, setCurrentQuestionIndex, setScore }) {
+  const [isRevealingCorrectAnswer, setIsRevealingCorrectAnswer] = useState(false);
 
-  const currentQuestion = questions[currentQuestionIndex];
-  const currentQuestionAnswers = [
-    currentQuestion.correctAnswer,
-    ...currentQuestion.incorrectAnswers,
-  ];
-  shuffle(currentQuestionAnswers);
+  const questionAnswers = useMemo(() => {
+    const answers = [question.correctAnswer, ...question.incorrectAnswers];
+    shuffle(answers);
+    return answers;
+  }, [question.correctAnswer, question.incorrectAnswers]);
 
-  function shuffle(array) {
-    let currentIndex = array.length;
+  function handleAnswerButtonClick(isCorrectAnswer) {
+    if (!isRevealingCorrectAnswer) {
+      setIsRevealingCorrectAnswer((prev) => !prev);
 
-    while (currentIndex != 0) {
-      let randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
+      if (isCorrectAnswer) {
+        setScore((prev) => prev + 1);
+      }
 
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
-    }
-  }
-
-  function handlePreviousQuestionButtonClick() {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex((prev) => prev - 1)
-    }
-  }
-
-  function handleNextQuestionButtonClick() {
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex((prev) => prev + 1)
+      setTimeout(() => {
+        setIsRevealingCorrectAnswer(false);
+        setCurrentQuestionIndex((prev) => prev + 1);
+      }, 3000);
     }
   }
 
@@ -45,34 +33,35 @@ export default function QuestionPage({ questions }) {
     <Page>
       <div className="w-full md:w-3/4 2xl:w-3/5 min-h-full flex pt-16 items-center justify-start absolute top-0 flex-col">
         <h1 className="lg:text-[4rem] font-black text-red-orange text-[2rem] w-full lg:w-3/4">
-          Question #{currentQuestionIndex + 1}{" "}
-          <span className="text-gray-400/90">(of {questions.length})</span>
+          Question #{currentQuestionIndex + 1}
         </h1>
         <h1 className="lg:text-[2.5rem] font-bold text-[1.25rem] w-full lg:w-3/4 my-14">
-          {Parser().parse(currentQuestion.text)}
+          {Parser().parse(question.text)}
         </h1>
-        {currentQuestionAnswers.map((answer, index) => {
-          return <AnswerButton key={index}>{Parser().parse(answer)}</AnswerButton>;
+        {questionAnswers.map((answer, index) => {
+          return (
+            <AnswerButton
+              key={index}
+              isRevealed={isRevealingCorrectAnswer}
+              isCorrectAnswer={answer === question.correctAnswer}
+              onClick={() =>
+                handleAnswerButtonClick(
+                  answer === question.correctAnswer
+                )
+              }
+            >
+              {Parser().parse(answer)}
+            </AnswerButton>
+          );
         })}
-        <div className="w-3/4 flex justify-between">
-          <button
-            className="bg-red-orange text-white py-3 px-5 rounded-full cursor-pointer mb-5 hover:bg-red-orange/60 transition duration-300 ease-in-out"
-            onClick={handlePreviousQuestionButtonClick}
-          >
-            Previous Question
-          </button>
-          <button
-            className="bg-red-orange text-white py-3 px-5 rounded-full cursor-pointer mb-5 hover:bg-red-orange/60 transition duration-300 ease-in-out"
-            onClick={handleNextQuestionButtonClick}
-          >
-            Next Question
-          </button>
-        </div>
       </div>
     </Page>
   );
 }
 
 QuestionPage.propTypes = {
-  questions: PropTypes.array,
+  question: PropTypes.object.isRequired,
+  currentQuestionIndex: PropTypes.number.isRequired,
+  setCurrentQuestionIndex: PropTypes.func.isRequired,
+  setScore: PropTypes.func.isRequired
 };

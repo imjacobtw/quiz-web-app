@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="min-h-1/10 min-w-screen absolute bottom-0 flex justify-between items-center sm:px-12 text-center px-4">
       <p>
         <a
-          className="text-pastel-yellow hover:text-pastel-yellow/60 transition duration-300 ease-in-out"
+          className="text-red-orange hover:text-red-orange/60 transition duration-300 ease-in-out"
           href="https://github.com/imjacobtw"
         >
           @imjacobtw
@@ -15,7 +15,7 @@ export default function Footer() {
       <p>
         Built using the{" "}
         <a
-          className="text-pastel-yellow hover:text-pastel-yellow/60 transition duration-300 ease-in-out"
+          className="text-red-orange hover:text-red-orange/60 transition duration-300 ease-in-out"
           href="https://opentdb.com/"
         >
           Open Trivia Database API
