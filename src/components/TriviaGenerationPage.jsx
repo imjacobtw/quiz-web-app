@@ -61,7 +61,7 @@ export default function TriviaGenerationPage({ setQuestions, resetGame }) {
 
       setQuestions(fetchedQuestions);
       console.log(fetchedQuestions);
-      navigate("/trivia");
+      navigate("/trivia-web-app/trivia");
     } catch (err) {
       console.error(err.message);
       setQuestionsError(err);

@@ -9,7 +9,7 @@ export default function ReturnToTriviaGenerationPageButton({
     <Link
       className="bg-red-orange rounded-full px-5 py-3 uppercase cursor-pointer hover:bg-red-orange/60 transition duration-300 ease-in-out"
       onClick={onClick}
-      to="/"
+      to="/trivia-web-app"
     >
       {children}
     </Link>
