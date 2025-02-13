@@ -19,7 +19,7 @@ export default function App() {
       <Routes>
         <Route
           index
-          path="/"
+          path="/trivia-web-app"
           element={
             <TriviaGenerationPage
               setQuestions={setQuestions}
@@ -28,7 +28,7 @@ export default function App() {
           }
         />
         <Route
-          path="/trivia"
+          path="/trivia-web-app/trivia"
           element={
             currentQuestionIndex === questions.length ? (
               <GameOverPage
