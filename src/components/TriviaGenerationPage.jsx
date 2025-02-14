@@ -119,7 +119,7 @@ export default function TriviaGenerationPage({ setQuestions, resetGame }) {
         <TriviaArgumentInputContainer label="Select Amount">
           <input
             type="number"
-            className="bg-white text-red-orange focus:outline-red-orange rounded-full text-center p-2 min-w-[500px]"
+            className="bg-white text-red-orange focus:outline-red-orange rounded-full text-center p-2 w-[60vw] sm:w-[500px]"
             max={amountParameter.maximum}
             min={amountParameter.minimum}
             value={amount}

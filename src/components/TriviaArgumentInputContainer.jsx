@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export default function TriviaArgumentInputContainer({ label, children }) {
   return (
     <div className="flex items-center justify-end my-5">
-      <label className="mr-5 font-medium">{label}:</label>
+      <label className="mr-5 font-medium hidden lg:block">{label}:</label>
       {children}
     </div>
   );

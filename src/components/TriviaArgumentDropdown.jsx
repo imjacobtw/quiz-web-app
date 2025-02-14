@@ -7,7 +7,7 @@ export default function TriviaArgumentDropdown({
 }) {
   return (
     <select
-      className="bg-white text-red-orange px-5 py-3 rounded-full uppercase min-w-[500px]"
+      className="bg-white text-red-orange px-5 py-3 rounded-full uppercase w-[60vw] sm:w-[500px]"
       value={argument}
       onChange={(e) => setArgument(e.target.value)}
     >

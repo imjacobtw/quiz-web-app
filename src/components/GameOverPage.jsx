@@ -4,9 +4,7 @@ import ReturnToTriviaGenerationPageButton from "./ReturnToTriviaGenerationPageBu
 
 export default function GameOverPage({ score, numberOfQuestions, resetGame }) {
   const YELLOW_SCORE_TEXT_COLOR_MIN = Math.floor(numberOfQuestions / 3);
-  console.log(YELLOW_SCORE_TEXT_COLOR_MIN);
   const GREEN_SCORE_TEXT_COLOR_MIN = Math.floor(numberOfQuestions / 3) * 2;
-  console.log(GREEN_SCORE_TEXT_COLOR_MIN);
 
   let scoreColor = "text-white";
 
